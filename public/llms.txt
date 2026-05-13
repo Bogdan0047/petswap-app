@@ -1,0 +1,13 @@
+# PetSwap
+
+> PetSwap is the UK pet owner community for trusted dog sitter swaps and mutual pet care — a free pet sitting alternative connecting verified local pet owners.
+
+PetSwap helps UK pet owners arrange mutual care swaps with nearby, verified members. Members exchange trusted help with dog walking, sitting and overnight care without money changing hands.
+
+## Pages
+
+- [Home](/): What PetSwap is, how it works, trust signals, cities and pricing.
+- [Welcome](/welcome): Get started and join the PetSwap community.
+- [Support](/support): Help centre, FAQs and contact form for account, safety and billing.
+- [Privacy Policy](/privacy): How PetSwap collects, uses and protects member data.
+- [Terms of Use](/terms): The agreement between members and PetSwap.

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1, user-scalable=no" />
+    <meta name="description" content="PetSwap — the UK pet owner community for dog sitter swaps. A trusted, free pet sitting alternative in the UK. Connect with verified local pet owners.">
+    <meta name="keywords" content="pet sitting alternative UK, dog sitter swap UK, pet owner community UK, pet sitting UK, dog sitting community" />
+    <meta name="theme-color" content="#2F80ED" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="PetSwap" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/favicon.png" />
+    <link rel="canonical" href="/" />
+    <meta name="google-site-verification" content="RA1z1iDMz5IoJ7AOmmnSYojl5jsKXGzH1j1F7ELRW0c" />
+
+    <title>PetSwap — UK Pet Sitting & Dog Sitter Community</title>
+
+    <!-- Open Graph / social previews -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="PetSwap" />
+    <meta property="og:url" content="/" />
+    
+    
+    <meta property="og:image" content="https://petswap.co.uk/og-image.jpg">
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    
+    
+    <meta name="twitter:image" content="https://petswap.co.uk/og-image.jpg">
+
+    <!-- Force HTTPS once the page is loaded over http on the production domain -->
+    <script>
+      (function () {
+        try {
+          var h = location.hostname;
+          if (
+            location.protocol === "http:" &&
+            (h === "petswap.co.uk" || h === "www.petswap.co.uk")
+          ) {
+            location.replace("https://petswap.co.uk" + location.pathname + location.search + location.hash);
+          } else if (h === "www.petswap.co.uk") {
+            location.replace("https://petswap.co.uk" + location.pathname + location.search + location.hash);
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <!-- JSON-LD organization for trust + rich results -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "PetSwap",
+        "url": "https://petswap.co.uk",
+        "logo": "https://petswap.co.uk/favicon.png",
+        "sameAs": [],
+        "contactPoint": [{
+          "@type": "ContactPoint",
+          "email": "support@petswap.co.uk",
+          "contactType": "customer support",
+          "areaServed": "GB"
+        }]
+      }
+    </script>
+    <meta property="og:title" content="PetSwap — UK Pet Sitting & Dog Sitter Community">
+  <meta name="twitter:title" content="PetSwap — UK Pet Sitting & Dog Sitter Community">
+  <meta property="og:description" content="PetSwap — the UK pet owner community for dog sitter swaps. A trusted, free pet sitting alternative in the UK. Connect with verified local pet owners.">
+  <meta name="twitter:description" content="PetSwap — the UK pet owner community for dog sitter swaps. A trusted, free pet sitting alternative in the UK. Connect with verified local pet owners.">
+</head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

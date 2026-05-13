@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://petswap.co.uk/sitemap.xml

@@ -1,0 +1,35 @@
+{
+  "expo": {
+    "name": "PetSwap",
+    "slug": "petswap",
+    "scheme": "petswap",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./ios/App/App/Assets.xcassets/AppIcon.appiconset/AppIcon-512@2x.png",
+    "userInterfaceStyle": "automatic",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "app.lovable.ac8593d5a3e94ab184a1934b5a06cc67",
+      "buildNumber": "1",
+      "associatedDomains": [
+        "applinks:petswap.co.uk"
+      ],
+      "infoPlist": {
+        "CFBundleURLTypes": [
+          {
+            "CFBundleURLName": "app.lovable.ac8593d5a3e94ab184a1934b5a06cc67",
+            "CFBundleURLSchemes": [
+              "petswap"
+            ]
+          }
+        ]
+      }
+    },
+    "plugins": [],
+    "extra": {
+      "eas": {
+        "projectId": "81a9aab8-6bf2-45eb-995f-f01f542ba37c"
+      }
+    }
+  }
+}
