@@ -22,7 +22,6 @@
     "production": {
       "autoIncrement": true,
       "ios": {
-        "scheme": "App",
         "buildConfiguration": "Release",
         "resourceClass": "m-medium",
         "image": "latest"
