@@ -22,7 +22,7 @@
     "production": {
       "autoIncrement": true,
       "ios": {
-        "scheme": "App",
+        "scheme": "App.app"
         "resourceClass": "m-medium",
         "image": "latest"
       },
