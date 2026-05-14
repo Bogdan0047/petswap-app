@@ -1,12 +1,10 @@
 workflows:
   ios-workflow:
     name: iOS Workflow
-
     environment:
       vars:
         XCODE_WORKSPACE: "ios/App/App.xcworkspace"
         XCODE_SCHEME: "App"
-
     scripts:
       - name: Install dependencies
         script: npm install
@@ -14,16 +12,17 @@ workflows:
       - name: Sync Capacitor
         script: npx cap sync ios
 
-      - name: Install CocoaPods
+      - name: Debug iOS folder
         script: |
-          cd ios/App
-          pod install
+          pwd
+          ls -la ios/App
+          ls -la ios/App/App.xcworkspace
+          ls -la ios/App/App.xcodeproj
 
       - name: Build IPA
         script: |
           xcode-project build-ipa \
-            --workspace "$XCODE_WORKSPACE" \
-            --scheme "$XCODE_SCHEME"
-
+            --workspace ios/App/App.xcworkspace \
+            --scheme App
     artifacts:
       - build/ios/ipa/*.ipa
