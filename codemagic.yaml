@@ -3,8 +3,9 @@ workflows:
     name: iOS Workflow
     environment:
       vars:
-        XCODE_WORKSPACE: "ios/App/App.xcworkspace"
+        XCODE_PROJECT: "ios/App/App.xcodeproj"
         XCODE_SCHEME: "App"
+
     scripts:
       - name: Install dependencies
         script: npm install
@@ -30,8 +31,9 @@ workflows:
       - name: Build IPA
         script: |
           xcode-project build-ipa \
-            --workspace ios/App/App.xcworkspace \
-            --scheme App \
+            --project "$XCODE_PROJECT" \
+            --scheme "$XCODE_SCHEME" \
             --export-options-plist export_options.plist
+
     artifacts:
       - build/ios/ipa/*.ipa
