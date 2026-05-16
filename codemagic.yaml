@@ -20,16 +20,23 @@ workflows:
         script: |
           npx cap sync ios
 
+      - name: Debug signing assets
+        script: |
+          echo "Profiles:"
+          ls -la ~/Library/MobileDevice/Provisioning\ Profiles || true
+          echo "Certificates:"
+          security find-identity -v -p codesigning || true
+
       - name: Apply provisioning profiles
         script: |
-          xcode-project use-profiles \
-            --project "$XCODE_PROJECT"
+          xcode-project use-profiles
 
       - name: Build IPA
         script: |
           xcode-project build-ipa \
             --project "$XCODE_PROJECT" \
-            --scheme "$XCODE_SCHEME"
+            --scheme "$XCODE_SCHEME" \
+            --archive-xcargs "CODE_SIGN_STYLE=Manual"
 
     artifacts:
       - build/ios/ipa/*.ipa
