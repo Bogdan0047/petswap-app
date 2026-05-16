@@ -5,7 +5,7 @@ workflows:
     environment:
       ios_signing:
         distribution_type: app_store
-        bundle_identifier: YOUR_REAL_BUNDLE_ID
+        bundle_identifier: com.petswap.app
 
       vars:
         XCODE_PROJECT: "ios/App/App.xcodeproj"
