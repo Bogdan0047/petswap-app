@@ -1,39 +1,35 @@
 workflows:
   ios-workflow:
     name: iOS Workflow
+
     environment:
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: YOUR_REAL_BUNDLE_ID
+
       vars:
         XCODE_PROJECT: "ios/App/App.xcodeproj"
         XCODE_SCHEME: "App"
 
     scripts:
       - name: Install dependencies
-        script: npm install
+        script: |
+          npm install
 
       - name: Sync Capacitor
-        script: npx cap sync ios
-
-      - name: Create export options
         script: |
-          cat > export_options.plist <<EOF
-          <?xml version="1.0" encoding="UTF-8"?>
-          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-          <plist version="1.0">
-          <dict>
-            <key>method</key>
-            <string>app-store</string>
-            <key>signingStyle</key>
-            <string>automatic</string>
-          </dict>
-          </plist>
-          EOF
+          npx cap sync ios
+
+      - name: Apply provisioning profiles
+        script: |
+          xcode-project use-profiles \
+            --project "$XCODE_PROJECT"
 
       - name: Build IPA
         script: |
           xcode-project build-ipa \
             --project "$XCODE_PROJECT" \
-            --scheme "$XCODE_SCHEME" \
-            --export-options-plist export_options.plist
+            --scheme "$XCODE_SCHEME"
 
     artifacts:
       - build/ios/ipa/*.ipa
