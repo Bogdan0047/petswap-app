@@ -16,16 +16,13 @@ workflows:
         script: |
           npm install
 
+      - name: Build web assets
+        script: |
+          npm run build
+
       - name: Sync Capacitor
         script: |
           npx cap sync ios
-
-      - name: Debug signing assets
-        script: |
-          echo "Profiles:"
-          ls -la ~/Library/MobileDevice/Provisioning\ Profiles || true
-          echo "Certificates:"
-          security find-identity -v -p codesigning || true
 
       - name: Apply provisioning profiles
         script: |
@@ -35,8 +32,7 @@ workflows:
         script: |
           xcode-project build-ipa \
             --project "$XCODE_PROJECT" \
-            --scheme "$XCODE_SCHEME" \
-            --archive-xcargs "CODE_SIGN_STYLE=Manual"
+            --scheme "$XCODE_SCHEME"
 
     artifacts:
       - build/ios/ipa/*.ipa
