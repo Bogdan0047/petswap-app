@@ -8,7 +8,7 @@ workflows:
         bundle_identifier: com.petswap.app
 
       vars:
-        XCODE_WORKSPACE: "ios/App/App.xcworkspace"
+        XCODE_PROJECT: "ios/App/App.xcodeproj"
         XCODE_SCHEME: "App"
 
     scripts:
@@ -24,19 +24,14 @@ workflows:
         script: |
           npx cap sync ios
 
-      - name: Install CocoaPods
-        script: |
-          cd ios/App
-          pod install
-
       - name: Set up code signing
         script: |
-          xcode-project use-profiles
+          xcode-project use-profiles --project "$XCODE_PROJECT"
 
       - name: Build IPA
         script: |
           xcode-project build-ipa \
-            --workspace "$XCODE_WORKSPACE" \
+            --project "$XCODE_PROJECT" \
             --scheme "$XCODE_SCHEME"
 
     artifacts:
