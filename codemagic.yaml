@@ -10,6 +10,7 @@ workflows:
       vars:
         XCODE_PROJECT: "ios/App/App.xcodeproj"
         XCODE_SCHEME: "App"
+        APPLE_TEAM_ID: "KFF8GW57Z9"
 
     scripts:
       - name: Install dependencies
@@ -23,6 +24,12 @@ workflows:
       - name: Sync Capacitor
         script: |
           npx cap sync ios
+
+      - name: Force iOS bundle id
+        script: |
+          ruby -pi -e 'gsub(/PRODUCT_BUNDLE_IDENTIFIER = .*?;/, "PRODUCT_BUNDLE_IDENTIFIER = com.petswap.app;")' ios/App/App.xcodeproj/project.pbxproj
+          ruby -pi -e 'gsub(/DEVELOPMENT_TEAM = .*?;/, "DEVELOPMENT_TEAM = KFF8GW57Z9;")' ios/App/App.xcodeproj/project.pbxproj
+          grep -n "PRODUCT_BUNDLE_IDENTIFIER\|DEVELOPMENT_TEAM" ios/App/App.xcodeproj/project.pbxproj
 
       - name: Set up code signing
         script: |
