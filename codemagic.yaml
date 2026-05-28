@@ -1,4 +1,3 @@
-```yaml
 - name: Force iOS settings
   script: |
     python3 - <<'PY'
@@ -12,5 +11,4 @@
     text = re.sub(r"MARKETING_VERSION = .*?;", "MARKETING_VERSION = 1.1;", text)
 
     p.write_text(text)
-    PY
-```
+    PY'
