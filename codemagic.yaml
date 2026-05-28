@@ -1,54 +1,16 @@
-workflows:
-  ios-workflow:
-    name: iOS Workflow
+```yaml
+- name: Force iOS settings
+  script: |
+    python3 - <<'PY'
+    from pathlib import Path
+    import re
 
-    integrations:
-      app_store_connect: Codemagic PetSwap
+    p = Path("ios/App/App.xcodeproj/project.pbxproj")
+    text = p.read_text()
 
-    environment:
-      ios_signing:
-        distribution_type: app_store
-        bundle_identifier: com.petswap.app
+    text = re.sub(r"CURRENT_PROJECT_VERSION = .*?;", "CURRENT_PROJECT_VERSION = 4;", text)
+    text = re.sub(r"MARKETING_VERSION = .*?;", "MARKETING_VERSION = 1.1;", text)
 
-      vars:
-        XCODE_PROJECT: "ios/App/App.xcodeproj"
-        XCODE_SCHEME: "App"
-        APPLE_TEAM_ID: "KFF8GW57Z9"
-
-    scripts:
-      - name: Install dependencies
-        script: |
-          npm install
-
-      - name: Build web assets
-        script: |
-          npm run build
-
-      - name: Sync Capacitor
-        script: |
-          npx cap sync ios
-
-      - name: Force iOS settings
-        script: |
-          ruby -pi -e 'gsub(/PRODUCT_BUNDLE_IDENTIFIER = .*?;/, "PRODUCT_BUNDLE_IDENTIFIER = com.petswap.app;")' ios/App/App.xcodeproj/project.pbxproj
-          ruby -pi -e 'gsub(/DEVELOPMENT_TEAM = .*?;/, "DEVELOPMENT_TEAM = KFF8GW57Z9;")' ios/App/App.xcodeproj/project.pbxproj
-         ruby -pi -e 'gsub(/CURRENT_PROJECT_VERSION = .*?;/, "CURRENT_PROJECT_VERSION = 4;")' ios/App/App.xcodeproj/project.pbxproj
-          ruby -pi -e 'gsub(/MARKETING_VERSION = .*?;/, "MARKETING_VERSION = 1.1;")' ios/App/App.xcodeproj/project.pbxproj
-
-      - name: Set up code signing
-        script: |
-          xcode-project use-profiles --project "$XCODE_PROJECT"
-
-      - name: Build IPA
-        script: |
-          xcode-project build-ipa \
-            --project "$XCODE_PROJECT" \
-            --scheme "$XCODE_SCHEME"
-
-    artifacts:
-      - build/ios/ipa/*.ipa
-
-    publishing:
-      app_store_connect:
-        auth: integration
-        submit_to_testflight: true
+    p.write_text(text)
+    PY
+```
