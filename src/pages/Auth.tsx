@@ -17,7 +17,7 @@ const DEBUG_KEY = "petswap_oauth_debug";
 const APPLE_ERROR_KEY = "petswap_apple_last_error";
 const AUTH_EVENT_KEY = "petswap_last_auth_event";
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL as string;
-const APPLE_NATIVE_REDIRECT_URI = `${window.location.origin}/auth/callback`;
+const APPLE_NATIVE_REDIRECT_URI = "https://petswap.co.uk/auth/callback";
 const OAUTH_PENDING_KEY = "petswap_oauth_pending";
 
 const pushDebug = (tag: string, data?: unknown) => {
