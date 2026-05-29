@@ -37,8 +37,11 @@ workflows:
           p = Path("ios/App/App.xcodeproj/project.pbxproj")
           text = p.read_text()
 
+          text = re.sub(r"PRODUCT_BUNDLE_IDENTIFIER = .*?;", "PRODUCT_BUNDLE_IDENTIFIER = com.petswap.app;", text)
+          text = re.sub(r"DEVELOPMENT_TEAM = .*?;", "DEVELOPMENT_TEAM = KFF8GW57Z9;", text)
           text = re.sub(r"CURRENT_PROJECT_VERSION = .*?;", "CURRENT_PROJECT_VERSION = 4;", text)
           text = re.sub(r"MARKETING_VERSION = .*?;", "MARKETING_VERSION = 1.1;", text)
+          text = re.sub(r"CODE_SIGN_STYLE = .*?;", "CODE_SIGN_STYLE = Manual;", text)
 
           p.write_text(text)
           PY
